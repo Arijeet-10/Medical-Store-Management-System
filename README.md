@@ -20,7 +20,7 @@ This project is a simple web-based application for managing a medical store's in
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Arijeet0523/medical-store-management.git
+   git clone https://github.com/Arijeet-10/medical-store-management.git
    ```
 
 2. **Open the project folder:**
