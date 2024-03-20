@@ -1,10 +1,8 @@
-Here's a basic README template for a Medical Store Management System on GitHub:
-
----
-
 # Medical Store Management System
 
 This project is a simple web-based application for managing a medical store's inventory, sales, and customer information. It provides functionalities such as adding new products, updating quantities, generating bills, and storing sales data.
+
+### https://arijeet0523.github.io/Medical-Store-Management-System/
 
 ## Features
 
