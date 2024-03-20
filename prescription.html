@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription Management</title>
+    <link rel="stylesheet" href="sales.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css.map">
+    <link rel="stylesheet" href="css/style.scss">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header class="header_section">
+        <!-- <div class="container">
+          <div class="top_contact-container">
+            <div class="tel_container">
+              <a href="">
+                <img src="images/telephone-symbol-button.png" alt=""> Call : +01 1234567890
+              </a>
+            </div>
+            <div class="social-container">
+              <a href="">
+                <img src="images/fb.png" alt="" class="s-1">
+              </a>
+              <a href="">
+                <img src="images/twitter.png" alt="" class="s-2">
+              </a>
+              <a href="">
+                <img src="images/instagram.png" alt="" class="s-3">
+              </a>
+            </div>
+          </div>
+        </div> -->
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/logo.png" alt="">
+              <span>
+                Medical Store 
+              </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+  
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="d-flex  flex-column flex-lg-row align-items-center w-100 justify-content-between">
+                <ul class="navbar-nav  ">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="inventory.html"> Medicine Inventory </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="salePage.html"> Sales & Billing</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="prescription.html">Prescription </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="report.html"> Reports </a>
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact us</a>
+                  </li> -->
+                </ul>
+                <form class="form-inline ">
+                  <input type="search" placeholder="Search">
+                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                </form>
+                <!-- <div class="login_btn-contanier ml-0 ml-lg-5">
+                  <a href="">
+                    <img src="images/user.png" alt="">
+                    <span>
+                      Login
+                    </span>
+                  </a>
+                </div> -->
+              </div>
+            </div>
+  
+          </nav>
+        </div>
+      </header>
+
+    <main>
+        <section id="prescription">
+            <h2>Record Prescription</h2>
+            <form id="prescription-form">
+                <label for="patient-name">Patient Name:</label>
+                <input type="text" id="patient-name" name="patient-name" required><br>
+
+                <label for="doctor-name">Doctor Name:</label>
+                <input type="text" id="doctor-name" name="doctor-name" required><br>
+
+                <label for="medicine">Medicine:</label>
+                <select id="medicine" name="medicine" required>
+                    <option value="">Select Medicine</option>
+                    <!-- Medicine options will be populated dynamically using JavaScript -->
+                </select><br>
+
+                <label for="dosage">Dosage:</label>
+                <input type="text" id="dosage" name="dosage" required><br>
+
+                <label for="frequency">Frequency:</label>
+                <input type="text" id="frequency" name="frequency" required><br>
+
+                <button type="submit">Record Prescription</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 Medical Store Management System</p>
+    </footer> -->
+
+    <script>
+        // Function to populate medicine options from inventory
+        function populateMedicineOptions() {
+            var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
+            var medicineSelect = document.getElementById('medicine');
+            
+            // Clear existing options
+            medicineSelect.innerHTML = '<option value="">Select Medicine</option>';
+            
+            // Add options for each medicine in inventory
+            inventoryData.forEach(function(product) {
+                var option = document.createElement('option');
+                option.textContent = product.productName;
+                option.value = product.productName;
+                medicineSelect.appendChild(option);
+            });
+        }
+
+        // Initialize medicine options on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            populateMedicineOptions();
+        });
+
+        // Function to handle prescription form submission
+        document.getElementById('prescription-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form values
+            var patientName = document.getElementById('patient-name').value;
+            var doctorName = document.getElementById('doctor-name').value;
+            var medicine = document.getElementById('medicine').value;
+            var dosage = document.getElementById('dosage').value;
+            var frequency = document.getElementById('frequency').value;
+
+            // Create prescription object
+            var prescription = {
+                patientName: patientName,
+                doctorName: doctorName,
+                medicine: medicine,
+                dosage: dosage,
+                frequency: frequency
+            };
+
+            // Get existing prescriptions from local storage or initialize empty array
+            var prescriptions = JSON.parse(localStorage.getItem('prescriptions')) || [];
+
+            // Add new prescription to prescriptions array
+            prescriptions.push(prescription);
+
+            // Save updated prescriptions to local storage
+            localStorage.setItem('prescriptions', JSON.stringify(prescriptions));
+
+            // Inform user that prescription has been recorded
+            alert('Prescription recorded successfully.');
+        });
+    </script>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
+    </script>
+    <script type="text/javascript">
+      $(".owl-carousel").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        navText: [],
+        autoplay: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 4
+          }
+        }
+      });
+    </script>
+    <script type="text/javascript">
+      $(".owl-2").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        navText: [],
+        autoplay: true,
+  
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 4
+          }
+        }
+      });
+    </script>
+</body>
+</html>

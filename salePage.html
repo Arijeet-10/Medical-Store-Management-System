@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales</title>
+    <link rel="stylesheet" href="sales.css">
+    <link rel="stylesheet" href="sales.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css.map">
+    <link rel="stylesheet" href="css/style.scss">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header class="header_section">
+        <!-- <div class="container">
+          <div class="top_contact-container">
+            <div class="tel_container">
+              <a href="">
+                <img src="images/telephone-symbol-button.png" alt=""> Call : +01 1234567890
+              </a>
+            </div>
+            <div class="social-container">
+              <a href="">
+                <img src="images/fb.png" alt="" class="s-1">
+              </a>
+              <a href="">
+                <img src="images/twitter.png" alt="" class="s-2">
+              </a>
+              <a href="">
+                <img src="images/instagram.png" alt="" class="s-3">
+              </a>
+            </div>
+          </div>
+        </div> -->
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/logo.png" alt="">
+              <span>
+                Medical Store 
+              </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+  
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="d-flex  flex-column flex-lg-row align-items-center w-100 justify-content-between">
+                <ul class="navbar-nav  ">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="inventory.html"> Medicine Inventory </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="salePage.html"> Sales & Billing</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="prescription.html">Prescription </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="report.html"> Reports </a>
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact us</a>
+                  </li> -->
+                </ul>
+                <form class="form-inline ">
+                  <input type="search" placeholder="Search">
+                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                </form>
+                <!-- <div class="login_btn-contanier ml-0 ml-lg-5">
+                  <a href="">
+                    <img src="images/user.png" alt="">
+                    <span>
+                      Login
+                    </span>
+                  </a>
+                </div> -->
+              </div>
+            </div>
+  
+          </nav>
+        </div>
+      </header>
+
+    <main>
+        <section id="customer-info">
+            <h2>Customer Information</h2>
+            <form id="customer-form">
+                <label for="customer-name">Customer Name:</label>
+                <input type="text" id="customer-name" name="customer-name" required><br>
+            </form>
+        </section>
+
+        <section id="product-selection">
+            <h2>Product Selection</h2>
+            <form id="product-form">
+                <label for="product">Select Medicine:</label>
+                <select id="product" name="product" required>
+                    <option value="">Select Medicine</option>
+                    <!-- Product options will be populated dynamically using JavaScript -->
+                </select><br>
+
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" required><br>
+
+                <button type="button" onclick="addProduct()">Buy Product</button>
+            </form>
+        </section>
+
+        <section id="bill">
+            <h2>Bill</h2>
+            <div id="bill-details"></div>
+            <button type="button" onclick="generateBill()">Generate Bill</button>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 Medical Store Management System</p>
+    </footer> -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
+    </script>
+    <script type="text/javascript">
+      $(".owl-carousel").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        navText: [],
+        autoplay: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 4
+          }
+        }
+      });
+    </script>
+    <script type="text/javascript">
+      $(".owl-2").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        navText: [],
+        autoplay: true,
+  
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 4
+          }
+        }
+      });
+    </script>
+    <script>
+        // Function to populate product selection dropdown
+        function populateProductDropdown() {
+            var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
+            var productDropdown = document.getElementById('product');
+            productDropdown.innerHTML = '<option value="">Select Medicine</option>';
+            inventoryData.forEach(function(product) {
+                var option = document.createElement('option');
+                option.textContent = product.productName;
+                option.value = product.productName;
+                productDropdown.appendChild(option);
+            });
+        }
+
+        // Call function to populate product dropdown on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            populateProductDropdown();
+        });
+
+        // Function to add product to bill
+        function addProduct() {
+            var productDropdown = document.getElementById('product');
+            var selectedProduct = productDropdown.value;
+            var quantityInput = document.getElementById('quantity');
+            var quantity = parseInt(quantityInput.value);
+
+            // Validate quantity
+            if (quantity <= 0 || isNaN(quantity)) {
+                alert('Please enter a valid quantity.');
+                return;
+            }
+
+            // Get product details from inventory data
+            var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
+            var selectedProductIndex = inventoryData.findIndex(function(product) {
+                return product.productName === selectedProduct;
+            });
+
+            if (selectedProductIndex === -1) {
+                alert('Selected product not found in inventory.');
+                return;
+            }
+
+            // Check if there is sufficient quantity in inventory
+            if (inventoryData[selectedProductIndex].quantity < quantity) {
+                alert('Insufficient quantity in inventory.');
+                return;
+            }
+
+            // Deduct quantity from inventory
+            inventoryData[selectedProductIndex].quantity -= quantity;
+
+            // Update inventory data in local storage
+            localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
+
+            // Add product to bill details
+            var billDetails = document.getElementById('bill-details');
+            var selectedProductDetails = inventoryData[selectedProductIndex];
+            var totalPrice = quantity * selectedProductDetails.price;
+            var itemDetails = document.createElement('div');
+            itemDetails.textContent = `${selectedProductDetails.productName}: ${quantity} x ₹${selectedProductDetails.price.toFixed(2)} = ₹${totalPrice.toFixed(2)}`;
+            billDetails.appendChild(itemDetails);
+
+            // Clear product selection form
+            productDropdown.selectedIndex = 0;
+            quantityInput.value = '';
+
+            alert('Product added to bill.');
+        }
+
+        // Function to generate bill
+        function generateBill() {
+            var customerName = document.getElementById('customer-name').value;
+            var billDetails = document.getElementById('bill-details').textContent;
+            var totalBillPrice = 0; // Variable to store the total price of the bill
+        
+            // Validate customer name and bill details
+            if (customerName.trim() === '' || billDetails.trim() === '') {
+                alert('Please fill in customer name and add products to generate bill.');
+                return;
+            }
+        
+            // Prepare bill content
+            var billContent = `
+                <p><strong>Customer Name:</strong> ${customerName}</p>
+                <p><strong>Bill Details:</strong></p>
+                <p>${billDetails}</p>
+                <p><br><p>
+            `;
+
+            // Calculate total bill price
+            var items = billDetails.split('\n');
+            items.forEach(function(item) {
+                var parts = item.trim().split(':');
+                var quantity = parseInt(parts[1].split('x')[0].trim());
+                var price = parseFloat(parts[1].split('₹')[1].trim());
+                totalBillPrice += quantity * price;
+            });
+
+            billContent += `<p><strong>Total Price:</strong> ₹${totalBillPrice.toFixed(2)}</p>`;
+        
+            // Display bill
+            var billSection = document.getElementById('bill');
+            billSection.innerHTML = `<h2>Bill</h2>${billContent}`;
+        
+            // Save bill details to local storage - in both salesData and reportData
+            var salesData = JSON.parse(localStorage.getItem('salesData')) || [];
+            var reportData = JSON.parse(localStorage.getItem('reportData')) || [];
+            var products = [];
+        
+            // Parse bill details to extract medicine name and quantity
+            var items = billDetails.split('\n');
+            items.forEach(function(item) {
+                var parts = item.trim().split(':');
+                var productName = parts[0];
+                var quantity = parseInt(parts[1].split('x')[0].trim());
+                var price = parseFloat(parts[1].split('₹')[1].trim());
+                products.push({ productName: productName, quantity: quantity, price: price });
+            });
+        
+            salesData.push({
+                customerName: customerName,
+                products: products,
+                totalPrice: totalBillPrice
+            });
+
+            reportData.push({
+                customerName: customerName,
+                products: products,
+                totalPrice: totalBillPrice
+            });
+        
+            localStorage.setItem('salesData', JSON.stringify(salesData));
+            localStorage.setItem('reportData', JSON.stringify(reportData));
+        
+            alert('Bill generated successfully.');
+        }
+        
+    </script>
+</body>
+</html>

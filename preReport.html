@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription Report</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prescription Report</h1>
+
+    <table id="prescription-table">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Doctor Name</th>
+                <th>Medicine</th>
+                <th>Dosage</th>
+                <th>Frequency</th>
+            </tr>
+        </thead>
+        <tbody id="prescription-body">
+            <!-- Prescription data will be added here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to render prescription data in the table
+        function renderPrescriptionData() {
+            var prescriptions = JSON.parse(localStorage.getItem('prescriptions')) || [];
+            var prescriptionBody = document.getElementById('prescription-body');
+            prescriptionBody.innerHTML = '';
+
+            prescriptions.forEach(function(prescription) {
+                var row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${prescription.patientName}</td>
+                    <td>${prescription.doctorName}</td>
+                    <td>${prescription.medicine}</td>
+                    <td>${prescription.dosage}</td>
+                    <td>${prescription.frequency}</td>
+                `;
+                prescriptionBody.appendChild(row);
+            });
+        }
+
+        // Call function to render prescription data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPrescriptionData();
+        });
+    </script>
+</body>
+</html>

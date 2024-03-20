@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <!-- <link rel="stylesheet" href="sales.css"> -->
+    <link rel="stylesheet" href="sales.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css.map">
+    <link rel="stylesheet" href="css/style.scss">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* Additional CSS for table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header class="header_section">
+        <!-- <div class="container">
+          <div class="top_contact-container">
+            <div class="tel_container">
+              <a href="">
+                <img src="images/telephone-symbol-button.png" alt=""> Call : +01 1234567890
+              </a>
+            </div>
+            <div class="social-container">
+              <a href="">
+                <img src="images/fb.png" alt="" class="s-1">
+              </a>
+              <a href="">
+                <img src="images/twitter.png" alt="" class="s-2">
+              </a>
+              <a href="">
+                <img src="images/instagram.png" alt="" class="s-3">
+              </a>
+            </div>
+          </div>
+        </div> -->
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/logo.png" alt="">
+              <span>
+                Medical Store 
+              </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+  
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="d-flex  flex-column flex-lg-row align-items-center w-100 justify-content-between">
+                <ul class="navbar-nav  ">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="inventory.html"> Medicine Inventory </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="salePage.html"> Sales & Billing</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="prescription.html">Prescription </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="report.html"> Reports </a>
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact us</a>
+                  </li> -->
+                </ul>
+                <form class="form-inline ">
+                  <input type="search" placeholder="Search">
+                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                </form>
+                <!-- <div class="login_btn-contanier ml-0 ml-lg-5">
+                  <a href="">
+                    <img src="images/user.png" alt="">
+                    <span>
+                      Login
+                    </span>
+                  </a>
+                </div> -->
+              </div>
+            </div>
+  
+          </nav>
+        </div>
+        
+      </header>
+
+    <main>
+        <section id="inventory">
+            <h2>Inventory</h2>
+            <table id="inventory-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="inventory-body">
+                    <!-- Inventory items will be added here -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="update-quantity">
+            <h2>Update Quantity</h2>
+            <form id="update-quantity-form">
+                <label for="product">Select Product:</label>
+                <select id="product" name="product" required>
+                    <option value="">Select Product</option>
+                    <!-- Options will be added dynamically -->
+                </select><br>
+
+                <label for="new-quantity">New Quantity:</label>
+                <input type="number" id="new-quantity" name="new-quantity" min="1" required><br>
+
+                <button type="submit">Update Quantity</button>
+            </form>
+        </section>
+
+        <section id="add-product">
+            <h2>Add Product</h2>
+            <form id="add-product-form">
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" name="product-name" required><br>
+
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" required><br>
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" min="0" step="0.01" required><br>
+
+                <button type="submit">Add Product</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 Medical Store Management System</p>
+    </footer> -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
+    </script>
+    <script type="text/javascript">
+      $(".owl-carousel").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        navText: [],
+        autoplay: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 4
+          }
+        }
+      });
+    </script>
+    <script type="text/javascript">
+      $(".owl-2").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        navText: [],
+        autoplay: true,
+  
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 4
+          }
+        }
+      });
+    </script>
+    <script>
+        // Function to render inventory products in table format
+        // Initialize some products in the inventoryData if it's not already set
+        
+        function renderInventory() {
+            var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
+            var inventoryBody = document.getElementById('inventory-body');
+            inventoryBody.innerHTML = '';
+            inventoryData.forEach(function(product, index) {
+                var row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.productName}</td>
+                    <td>${product.quantity}</td>
+                    <td>₹${product.price.toFixed(2)}</td>
+                    <td>
+                        <button onclick="removeProduct(${index})">Remove</button>
+                    </td>
+                `;
+                inventoryBody.appendChild(row);
+            });
+
+            // Update select options for product dropdown
+            var productDropdown = document.getElementById('product');
+            productDropdown.innerHTML = '<option value="">Select Product</option>';
+            inventoryData.forEach(function(product) {
+                var option = document.createElement('option');
+                option.textContent = product.productName;
+                option.value = product.productName;
+                productDropdown.appendChild(option);
+            });
+        }
+
+        // Initialize inventory rendering on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderInventory();
+        });
+
+        // Update quantity form submission
+// Update quantity form submission
+document.getElementById('update-quantity-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+    
+    // Get form values
+    var productName = document.getElementById('product').value;
+    var newQuantity = parseInt(document.getElementById('new-quantity').value);
+
+    // Validate form values
+    if (productName === '' || isNaN(newQuantity) || newQuantity <= 0) {
+        alert('Please select a product and enter a valid quantity.');
+        return;
+    }
+
+    // Get inventory products data from local storage
+    var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
+    var found = false;
+
+    // Add quantity to the existing quantity
+    for (var i = 0; i < inventoryData.length; i++) {
+        if (inventoryData[i].productName === productName) {
+            inventoryData[i].quantity += newQuantity;
+            localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        alert('Product not found in inventory.');
+        return;
+    }
+
+    // Render updated inventory data on the page
+    renderInventory();
+
+    // Clear form fields
+    document.getElementById('update-quantity-form').reset();
+
+    alert('Quantity added successfully.');
+});
+
+
+        // Function to remove product from inventory
+        function removeProduct(index) {
+            if (confirm('Are you sure you want to remove this product?')) {
+                var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
+                inventoryData.splice(index, 1); // Remove the product from the array
+                localStorage.setItem('inventoryData', JSON.stringify(inventoryData)); // Update local storage
+                renderInventory(); // Re-render inventory table
+                alert('Product removed successfully.');
+            }
+        }
+
+        
+
+        // Add product form submission
+        document.getElementById('add-product-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Get form values
+            var productName = document.getElementById('product-name').value;
+            var quantity = parseInt(document.getElementById('quantity').value);
+            var price = parseFloat(document.getElementById('price').value);
+
+            // Validate form values
+            if (productName.trim() === '' || isNaN(quantity) || isNaN(price) || quantity <= 0 || price <= 0) {
+                alert('Please fill in all fields with valid values.');
+                return;
+            }
+
+            // Create new product object
+            var newProduct = {
+                productName: productName,
+                quantity: quantity,
+                price: price
+            };
+
+            // Get existing inventory data or initialize empty array
+            var inventoryData = JSON.parse(localStorage.getItem('inventoryData')) || [];
+
+            // Add new product to inventory data
+            inventoryData.push(newProduct);
+
+            // Save updated inventory data to local storage
+            localStorage.setItem('inventoryData', JSON.stringify(inventoryData));
+
+            // Render updated inventory data on the page
+            renderInventory();
+
+            // Clear form fields
+            document.getElementById('add-product-form').reset();
+
+            alert('Product added to inventory successfully.');
+        });
+    </script>
+</body>
+</html>
