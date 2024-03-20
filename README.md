@@ -22,7 +22,7 @@ This project is a simple web-based application for managing a medical store's in
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/medical-store-management.git
+   git clone https://github.com/Arijeet0523/medical-store-management.git
    ```
 
 2. **Open the project folder:**
@@ -48,4 +48,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-You can customize this template based on your project's specific details and requirements.
+## Screenshots of the website: 
+
+![home](https://github.com/Arijeet0523/Medical-Store-Management-System/assets/113160103/c1ce5548-e7c7-45a1-ad84-3ca6c89bed5b)
+![inventory](https://github.com/Arijeet0523/Medical-Store-Management-System/assets/113160103/d0fb7c1e-310d-442f-a99d-a10cf8e95eea)
+![sales](https://github.com/Arijeet0523/Medical-Store-Management-System/assets/113160103/57ffbcb8-765a-4d5b-9db3-5dc01d898384)
+![prescription](https://github.com/Arijeet0523/Medical-Store-Management-System/assets/113160103/e3e83127-db36-450a-866a-534fbf120450)
+![reports](https://github.com/Arijeet0523/Medical-Store-Management-System/assets/113160103/cb4ef5b8-3c4e-49a2-9a48-a1682a4f2921)
+![login](https://github.com/Arijeet0523/Medical-Store-Management-System/assets/113160103/d131b77d-e50a-47ec-9b53-099385b27695)
+
